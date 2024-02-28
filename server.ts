@@ -3,7 +3,7 @@ import swaggerJSDOC from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import { PORT } from './const/config';
 import { swaggerOptions } from './swaggerOptions';
-// Routes imoports
+// Routes imports
 import authRouter from './router/auth';
 
 const app = express();
