@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import mongoose from 'mongoose';
 import swaggerJSDOC from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
