@@ -1,6 +1,9 @@
 import express from 'express';
 import { AuthController } from '../controllers/authController';
 
+// Midelwares imports
+import { hashPasswordMiddleware } from '../middlewares/hashPasswordMiddleware';
+
 const router = express.Router();
 const authController = new AuthController();
 
@@ -8,6 +11,6 @@ const authController = new AuthController();
 router.get('/status', authController.status);
 
 // Register
-router.post('/register', authController.register);
+router.post('/register', hashPasswordMiddleware, authController.register);
 
 export default router;
