@@ -7,4 +7,7 @@ const authController = new AuthController();
 // Check if the routes are working
 router.get('/status', authController.status);
 
+// Register
+router.post('/register', authController.register);
+
 export default router;
