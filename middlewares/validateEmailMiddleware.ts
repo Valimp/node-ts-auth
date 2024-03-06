@@ -13,5 +13,5 @@ export async function validateEmailMiddleware(req: Request, res: Response, next:
         return res.status(400).json({ message: "Email is not valid" });
     }
 
-    next(); // Passer au middleware suivant si le mot de passe est assez fort
+    next();
 }

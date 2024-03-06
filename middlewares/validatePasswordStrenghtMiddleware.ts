@@ -38,5 +38,5 @@ export async function validatePasswordStrengthMiddleware(req: Request, res: Resp
         return res.status(400).json({ message: "Password must contain at least one lowercase letter" });
     }
 
-    next(); // Passer au middleware suivant si le mot de passe est assez fort
+    next();
 }
