@@ -16,6 +16,9 @@ const userSchema: Schema = new Schema({
     type: String,
     required: [true, 'Please provide a password'],
   },
+  createdAt: { 
+    type: Date, default: Date.now 
+  }
 });
 
 export const UserModel = mongoose.model<UserDocument>('User', userSchema);
