@@ -8,6 +8,11 @@ export async function validatePasswordStrengthMiddleware(req: Request, res: Resp
         res.status(400).json({ message: "Password is required" });
     }
 
+    // Check if the password don't contain "<" or ">"
+    if (password.includes("<") || password.includes(">")) {
+        return res.status(400).json({ message: "Password must not contain '<' or '>'" });
+    }
+
     // Check if the password is at least 8 characters long
     if (password.length < 8) {
         return res.status(400).json({ message: "Password must have more than 8 caracters" });
