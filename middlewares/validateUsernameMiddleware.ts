@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-export async function validateNameMiddleware(req: Request, res: Response, next: NextFunction) {
+export async function validateUsernameMiddleware(req: Request, res: Response, next: NextFunction) {
     const { username } = req.body;
 
     // Check if the name is provided

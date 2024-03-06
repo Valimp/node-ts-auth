@@ -5,7 +5,7 @@ import { AuthController } from '../controllers/authController';
 import { hashPasswordMiddleware } from '../middlewares/hashPasswordMiddleware';
 import { validatePasswordStrengthMiddleware } from '../middlewares/validatePasswordStrenghtMiddleware';
 import { validateEmailMiddleware } from '../middlewares/validateEmailMiddleware';
-import { validateNameMiddleware } from '../middlewares/validateNameMiddleware';
+import { validateUsernameMiddleware } from '../middlewares/validateUsernameMiddleware';
 
 const router = express.Router();
 const authController = new AuthController();
@@ -14,6 +14,6 @@ const authController = new AuthController();
 router.get('/status', authController.status);
 
 // Register
-router.post('/register', validateNameMiddleware, validateEmailMiddleware, validatePasswordStrengthMiddleware, hashPasswordMiddleware, authController.register);
+router.post('/register', validateUsernameMiddleware, validateEmailMiddleware, validatePasswordStrengthMiddleware, hashPasswordMiddleware, authController.register);
 
 export default router;
