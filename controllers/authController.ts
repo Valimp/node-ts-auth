@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { UserModel } from '../models/User';
+import bcrypt from 'bcrypt';
 /**
  * @swagger
  * tags:
@@ -82,4 +83,22 @@ export class AuthController {
         }
     }
 
+    public async login(req: Request, res: Response): Promise<void> {
+        try {
+            const { email, password } = req.body;
+            const user = await UserModel.findOne({ email: email });
+            if (!user) {
+                res.status(404).json({ status: 'fail', error: 'User not found' });
+            } else {
+                const isMatch = await bcrypt.compare(password, user.password);
+                if (isMatch) {
+                    res.status(200).json({ status: 'success', user });
+                } else {
+                    res.status(401).json({ status: 'fail', error: 'Invalid password' });
+                }
+            }
+        } catch (error) {
+            res.status(400).json({ status: 'fail', error });
+        }
+    }
 }
