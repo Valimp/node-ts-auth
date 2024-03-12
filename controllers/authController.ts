@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import { UserModel } from '../models/User';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import { JWT_SECRET } from '../const/config';
 /**
  * @swagger
  * tags:
@@ -92,7 +94,20 @@ export class AuthController {
             } else {
                 const isMatch = await bcrypt.compare(password, user.password);
                 if (isMatch) {
+
+                    const payload = {
+                        userId: user._id,
+                        username: user.username
+                    };
+                    const secretKey = JWT_SECRET;
+                    const options = { expiresIn: '1h' };
+                    const token = jwt.sign(payload, secretKey, options);
+
+                    // send the token to the client with a cookie
+                    res.cookie('token', token, { httpOnly: true });
+                    // send the user data to the client
                     res.status(200).json({ status: 'success', user });
+                    
                 } else {
                     res.status(401).json({ status: 'fail', error: 'Invalid password' });
                 }
