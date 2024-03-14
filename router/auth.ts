@@ -6,7 +6,7 @@ import { hashPasswordMiddleware } from '../middlewares/hashPasswordMiddleware';
 import { validatePasswordStrengthMiddleware } from '../middlewares/validatePasswordStrenghtMiddleware';
 import { validateEmailMiddleware } from '../middlewares/validateEmailMiddleware';
 import { validateUsernameMiddleware } from '../middlewares/validateUsernameMiddleware';
-import { comparePasswordMiddleware } from '../middlewares/comparePasswordMiddleware';
+import { checkTokenMiddleware } from '../middlewares/checkTokenMiddleware';
 
 const router = express.Router();
 const authController = new AuthController();
@@ -17,8 +17,10 @@ router.get('/status', authController.status);
 // Register
 router.post('/register', validateUsernameMiddleware, validateEmailMiddleware, validatePasswordStrengthMiddleware, hashPasswordMiddleware, authController.register);
 
-// Login with comparePasswordMiddleware
+// Login with jwt
 router.post('/login', authController.login);
 
+// Change password
+router.post('/changepassword', checkTokenMiddleware, validatePasswordStrengthMiddleware, hashPasswordMiddleware, authController.changePassword);
 
 export default router;
