@@ -160,6 +160,49 @@ export class AuthController {
         }
     }
 
+        /**
+     * @swagger
+     * /changepassword:
+     *   post:
+     *     summary: change password of a user
+     *     description: change password of a user with the provided email, and password and create a token for the user.
+     *     tags: [Auth]
+     *     requestBody:
+     *       required: true
+     *       content:
+     *         application/json:
+     *           schema:
+     *             type: object
+     *             properties:
+     *               email:
+     *                 type: string
+     *                 format: email
+     *               password:
+     *                 type: string
+     *     responses:
+     *       '200':
+     *         description: Successfully changed password of a user
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 status:
+     *                   type: string
+     *                   example: success
+     *       '404':
+     *         description: User not found
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 status:
+     *                   type: string
+     *                   example: fail
+     *                 error:
+     *                   type: string
+     */
     public async changePassword(req: Request, res: Response): Promise<void> {
         try {
             const { email, password } = req.body;
