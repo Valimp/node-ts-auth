@@ -159,4 +159,20 @@ export class AuthController {
             res.status(400).json({ status: 'fail', error });
         }
     }
+
+    public async changePassword(req: Request, res: Response): Promise<void> {
+        try {
+            const { email, password } = req.body;
+            const user = await UserModel.findOne({ email: email });  
+            if (!user) {
+                res.status(404).json({ status: 'fail', error: 'User not found' });
+            } else {
+                user.password = password;
+                await user.save();
+                res.status(200).json({ status: 'success', user });
+            } 
+        } catch (error) {
+
+        }
+    }
 }
