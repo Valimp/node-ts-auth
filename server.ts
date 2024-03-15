@@ -5,6 +5,7 @@ import swaggerJSDOC from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import { PORT, MONGODB_URI } from './const/config';
 import { swaggerOptions } from './swaggerOptions';
+import { info, error } from './const/logging';
 // Routes imports
 import authRouter from './router/auth';
 
@@ -23,13 +24,13 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 // Connect to MongoDB and log message if successful
 mongoose.connect(MONGODB_URI)
   .then(() => {
-    console.log('Connected to MongoDB');
+    info('server', 'Connected to MongoDB');
   })
   .catch((err) => {
-    console.error('Error connecting to MongoDB', err);
+    error('server', 'Error connecting to MongoDB', err);
   });
 
 // App listening
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  info('server', `Server is running on port ${PORT}`);
 });
