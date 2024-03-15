@@ -167,6 +167,7 @@ export class AuthController {
             if (!user) {
                 res.status(404).json({ status: 'fail', error: 'User not found' });
             } else {
+                user.password = password;
                 await user.save();
                 res.status(200).json({ status: 'success', user });
             } 
