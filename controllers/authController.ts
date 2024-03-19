@@ -160,7 +160,7 @@ export class AuthController {
         }
     }
 
-        /**
+    /**
      * @swagger
      * /changepassword:
      *   post:

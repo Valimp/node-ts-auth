@@ -7,9 +7,14 @@ import { validatePasswordStrengthMiddleware } from '../middlewares/validatePassw
 import { validateEmailMiddleware } from '../middlewares/validateEmailMiddleware';
 import { validateUsernameMiddleware } from '../middlewares/validateUsernameMiddleware';
 import { checkTokenMiddleware } from '../middlewares/checkTokenMiddleware';
+import { logRequestMiddleware } from '../middlewares/logRequestMiddleware';
 
 const router = express.Router();
 const authController = new AuthController();
+const NAMESPACE = 'auth';
+
+// Log the request
+router.use((req, res, next) => logRequestMiddleware(req, res, next, NAMESPACE));
 
 // Check if the routes are working
 router.get('/status', authController.status);
