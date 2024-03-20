@@ -140,7 +140,8 @@ export class AuthController {
 
                     const payload = {
                         userId: user._id,
-                        username: user.username
+                        username: user.username,
+                        role: user.role
                     };
                     const secretKey = JWT_SECRET;
                     const options = { expiresIn: '1h' };
