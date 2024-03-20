@@ -16,6 +16,10 @@ const userSchema: Schema = new Schema({
     type: String,
     required: [true, 'Please provide a password'],
   },
+  role: {
+    type: String,
+    default: 'user',
+  },
   createdAt: { 
     type: Date, default: Date.now 
   }
