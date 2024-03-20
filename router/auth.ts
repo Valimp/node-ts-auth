@@ -17,15 +17,30 @@ const NAMESPACE = 'auth';
 router.use((req, res, next) => logRequestMiddleware(req, res, next, NAMESPACE));
 
 // Check if the routes are working
-router.get('/status', authController.status);
+router.get('/status',
+    authController.status
+);
 
 // Register
-router.post('/register', validateUsernameMiddleware, validateEmailMiddleware, validatePasswordStrengthMiddleware, hashPasswordMiddleware, authController.register);
+router.post('/register',
+    validateUsernameMiddleware,
+    validateEmailMiddleware,
+    validatePasswordStrengthMiddleware,
+    hashPasswordMiddleware,
+    authController.register
+);
 
 // Login with jwt
-router.post('/login', authController.login);
+router.post('/login', 
+    authController.login
+);
 
 // Change password
-router.post('/changepassword', checkTokenMiddleware, validatePasswordStrengthMiddleware, hashPasswordMiddleware, authController.changePassword);
+router.post('/changepassword',
+    checkTokenMiddleware,
+    validatePasswordStrengthMiddleware,
+    hashPasswordMiddleware,
+    authController.changePassword
+);
 
 export default router;
