@@ -10,19 +10,9 @@
 
 `cd node-ts-auth`
 
-3. Install dependencies
+3. Build docker for development
 
-`npm install`
-
-4. Create an env.file with following informations
-
-- PORT
-- MONGO_URI
-- JWT_SECRET
-
-5. Start server
-
-`npm start`
+`docker compose -f docker-compose.dev.yml up`
 
 ## About the project
 
