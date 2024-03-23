@@ -75,7 +75,7 @@ export class AuthController {
      *                 error:
      *                   type: string
      */
-    public async register(req: Request, res: Response): Promise<void> {        
+    public async register(req: Request, res: Response): Promise<void> {
         try {
             const { username, email, password } = req.body;
             const user = await UserModel.create({ username: username , email: email, password: password });
